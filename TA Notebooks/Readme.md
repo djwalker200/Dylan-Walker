@@ -1,0 +1,1 @@
+This folder contains a collection of python notebooks I developed as a TA for the course "Computational Genetics and Genomics" at Cornell University during the Fall 2022 semester. These notebooks were presented as lectures aimed to reinforce the students' understanding of course topics.
