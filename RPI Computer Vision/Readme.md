@@ -1,6 +1,6 @@
 This directory contains a collection of my works as a computer vision student at Rensselaer Polytechnic Institute.
 
-bats.py - detects the location of bats/birds in images of a sky.
+bats.py - detects the location of bats/birds in images of a sky (see Bats Examples)
 
 seam_carve.py - Implementation of a seam carving algorithm utilizing dynamic programming (see Seam Carving Examples)
 
