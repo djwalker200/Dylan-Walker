@@ -8,6 +8,6 @@ bayesian_optimization.py - python implementation of a gaussian process for solvi
 
 hyperparameter_search.py - Implementation and analysis on a variety of hyperparameter search methods
 
-multithreaded_SGD,py - Experiments with multiple approaches to optimize computational efficiency including parallel programming (explicit and implicit) as well as low-precision arithmetic.
+multithreaded_SGD.py - Experiments with multiple approaches to optimize computational efficiency including parallel programming (explicit and implicit) as well as low-precision arithmetic.
 
 optimization_methods.py - Experiments comparing the performance of multiple popular gradient-based optimization methods
