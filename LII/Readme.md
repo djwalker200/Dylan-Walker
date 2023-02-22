@@ -8,6 +8,10 @@ xml_helpers.py - Contains helper functions for parsing/editing XML files
 
 definitions.py - Contains customized data structures for representing definition and defined term objects
 
-explore_scoping.py - Main script code with multiple functionalities. The primary functionality is to process and match all defined terms within a given state corpus.
+explore_scoping.py - Main script code with multiple functionalities. The primary usage is to match all defined terms to corresponding definitions within a given state corpus using a scope-matching algorithm.
+
+Final Report.pdf - Technical write-up summarizing the methods and implementation of our work. This was submitted to Cornell University as part of my masters degree.
+
+FinalPresentation.pdf - Slideshow presentation outlining the entire project. This was presented to members of the LII and Cornell Law School during my masters degree.
 
 
