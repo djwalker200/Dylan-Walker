@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-
 import math
 import os
 import random
@@ -170,6 +169,7 @@ if __name__ == "__main__":
     # Reads each image in the input folder and sorts alphabetically
     data = []
     for img_name in os.listdir(img_folder):
+
         #Checks that images are of a proper file type
         if(img_name == '.DS_Store'):
             continue
@@ -265,26 +265,27 @@ if __name__ == "__main__":
             #Prints the fraction of matches for each image
             fraction1 = len(matches) / len(keyp1)
             fraction2 = len(matches) / len(keyp2)
-            print('Number of matches between',name1,'and',name2,':',len(matches))
-            print('Fraction of matches for',name1,'%.3f' % fraction1)
-            print('Fraction of matches for',name2,'%.3f' % fraction2)
+            print(f'Number of matches between {name1} and {name2}: {len(matches)}')
+            print(f'Fraction of matches for {name1}:','%.3f' % fraction1)
+            print(f'Fraction of matches for {name2}:','%.3f' % fraction2)
 
             # Prints the side-by-side image with the matches that passed the ratio test drawn
-            printMatchImage(color_img1,keyp1,color_img2,keyp2,matches,name1 + '_' + name2 + '_matched' + file_extension)
+            image_filename = f"{name1}_{name2}_matched{file_extension}"
+            printMatchImage(color_img1, keyp1, color_img2, keyp2, matches, image_filename)
 
 
             # Threshold for the fraction of keypoints that must have matches in both images
             FRACTION_THRESHOLD = 0.005
             if(fraction1 < FRACTION_THRESHOLD or fraction2 < FRACTION_THRESHOLD):
                 print()
-                print(name1,"does not match",name2,"because of fraction of good matches found")
+                print(f"{name1} does not match {name2} because of fraction of good matches found")
                 continue
 
             # Threshold for the minimum number of matches that are required 
             ABSOLUTE_THRESHOLD = 50
             if(len(matches) < ABSOLUTE_THRESHOLD):
                 print()
-                print(name1,"does not match",name2,"because of number of good matches found")
+                print(f"{name1} does not match {name2} because of number of good matches found")
                 print()
                 continue
 
@@ -307,18 +308,19 @@ if __name__ == "__main__":
             
             # Prints the number and fraction of inliers from the fundamental matrix step
             fraction = len(inliers) / len(matches)
-            print('Number of fundamental matrix inliers:',len(inliers))
+            print(f"Number of fundamental matrix inliers: {len(inliers)}")
             print('Fraction of fundamental matrix inliers:','%.3f' % fraction)
             print()
 
             # Prints the side-by-side image with the fundamental matrix inliers drawn
-            printMatchImage(color_img1,keyp1,color_img2,keyp2,inliers,name1 + '_' + name2 + '_finliers' + file_extension)
+            image_filename = f"{name1}_{name2}_finliers{file_extension}"
+            printMatchImage(color_img1, keyp1, color_img2, keyp2, inliers, image_filename)
 
             # Threshold for the minimum fraction of inliers
             INLIER_FRACTION_THRESHOLD = 0.25
             if(fraction < INLIER_FRACTION_THRESHOLD):
                 print()           
-                print(name1,"does not match",name2,"because of fraction of fundamental matrix inliers")
+                print(f"{name1} does not match {name2} because of fraction of fundamental matrix inliers")
                 print()
                 continue
 
@@ -326,7 +328,7 @@ if __name__ == "__main__":
             INLIER_ABSOLUTE_THRESHOLD = 25
             if(len(inliers) < INLIER_ABSOLUTE_THRESHOLD ):
                 print()
-                print(name1,"does not match",name2,"because of number of fundamental matrix inliers")
+                print(f"{name1} does not match {name2} because of number of fundamental matrix inliers")
                 print()
                 continue
 
@@ -348,7 +350,7 @@ if __name__ == "__main__":
 
             # Prints the number and fraction of matches that remained as inliers
             fraction = len(homography_inliers) / len(inliers)
-            print('Number of homography inliers:',len(homography_inliers))
+            print(f"Number of homography inliers: {len(homography_inliers)}")
             print('Fraction of homography inliers:','%.3f' %  fraction)
             print()
 
@@ -359,7 +361,7 @@ if __name__ == "__main__":
             HOMOGRAPHY_FRACTION_THRESHOLD = 0.10
             if(fraction < HOMOGRAPHY_FRACTION_THRESHOLD):
                 print()
-                print(name1,"does not match",name2,"because of fraction of homography inliers")
+                print(f"{name1} does not match {name2} because of fraction of homography inliers")
                 print()
                 continue
 
@@ -367,7 +369,7 @@ if __name__ == "__main__":
             HOMOGRAPHY_ABSOLUTE_THRESHOLD = 10
             if(len(homography_inliers) < HOMOGRAPHY_ABSOLUTE_THRESHOLD) :
                 print()
-                print(name1,"does not match",name2,"because of number of homography inliers")
+                print(f"{name1} does not match {name2} because of number of homography inliers")
                 print()
                 continue
 
@@ -450,7 +452,7 @@ if __name__ == "__main__":
             # Write final image
             output_file = name1 + '_' + name2 + file_extension
             cv2.imwrite(out_name,final_img)
-            print('Wrote mosaic image:',out_name)
+            print(f'Wrote mosaic image: {out_name}')
             print()
             mosaic_matches[j,i] = 1
             mosaic_matches_homographies[j,i,:,:] = H
@@ -565,7 +567,7 @@ if __name__ == "__main__":
                
             # Write the final mosaic image
             cv2.imwrite(output_file,final_img)
-            print('Wrote mulit-image mosaic' , output_file)
+            print(f'Wrote mulit-image mosaic: {output_file}')
             
             
 

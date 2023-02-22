@@ -116,14 +116,18 @@ if __name__ == "__main__":
     # Input file
     in_file = sys.argv[1]
     
-    
     # Checks for valid command line arguments
-    if(in_file[-4:] != '.jpg' and in_file[-4:] != '.png') :
-        print('invalid command line arguments')
+    prefix = in_file[:-4]
+    file_extension = in_file[-4:]
+
+    valid_extensions = ['.jpg','.png']
+    if file_extension not in valid_extensions:
+        print('Invalid Filename')
+        exit()
 
     # Output filenames
-    seam_outfile = in_file[:-4] + '_seam' + in_file[-4:]
-    final_outfile = in_file[:-4] + '_final' + in_file[-4:]
+    seam_outfile = f"{prefix}_seam{file_extension}"
+    final_outfile = f"{prefix}_final{file_extension}"
     
     
     # Reads in image in color

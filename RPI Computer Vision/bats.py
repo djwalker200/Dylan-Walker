@@ -1,29 +1,33 @@
 import cv2         
 import numpy as np
 from matplotlib import pyplot as plt
-
-
 import os
 import random
 import sys
 import math
 
 
-#Input file
-#Checks for valid command line arguments
-if(in_file[-4:] != '.jpg' and in_file[-4:] != '.png') :
-    print('invalid command line arguments')
+# Input file
+in_file = sys.argv[1]
 
-#Stores output file name
-out_file = in_file[:-4] + '_bats' + in_file[-4:]
+# Checks for valid command line arguments
+prefix = in_file[:-4]
+file_extension = in_file[-4:]
 
-#Reads image in color and creates grayscale copy to work with
+valid_extensions = ['.jpg','.png']
+if file_extension not in valid_extensions:
+    print('Invalid Filename')
+    exit()
+
+# Stores output file name
+out_file = f"{prefix}_bats{file_extension}"
+
+# Reads images
 color_img = cv2.imread(in_file).astype(np.float32)
 img = cv2.cvtColor(color_img,cv2.COLOR_BGR2GRAY)
 
-#Inverts image so that bats will be brighter and sky will be darker
+# Inverts image and applies threshold
 img = 255 - img
-#Applies threshold as done in lecture
 mean = np.average(img)
 std = np.std(img)
 thresh = mean + 2*std
